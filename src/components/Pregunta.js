@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import Error from './Error'
 
 const Pregunta = () => {
     // Definir el state
@@ -30,7 +31,7 @@ const Pregunta = () => {
         <Fragment>
             <h2 className="mb-4 text-3xl text-center text-blue-600">Coloca tu presupuesto</h2>
             {error
-                ? <div className="max-w-2xl p-3 mx-auto my-3 text-white bg-red-500 rounded-xl">Error, debes ingresar un presupuesto</div>
+                ? <Error mensaje="El presupuesto es incorrecto"></Error>
                 : null }
             <form
                 className="px-3 mx-auto md:max-w-2xl md:p-0"
