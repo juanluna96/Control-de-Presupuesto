@@ -7,7 +7,15 @@ function App() {
   const [presupuesto, setPresupuesto] = useState(0);
   const [restante, setRestante] = useState(0);
   const [mostrarpregunta, actualizarPregunta] = useState(true);
+  const [gastos, setGastos] = useState([])
 
+  // Cuando agreguemos un nuevo gasto
+  const agregarNuevoGasto = (gasto) => {
+    setGastos([
+      ...gastos,
+      gasto
+    ])
+  }
 
   return (
     <div className="container px-3 mx-auto md:px-0">
@@ -20,7 +28,7 @@ function App() {
             :
             <div className="flex-row p-3 mt-3 md:flex">
               <div className="md:w-1/2">
-                <Formulario></Formulario>
+                <Formulario agregarNuevoGasto={ agregarNuevoGasto }></Formulario>
               </div>
               <div className="md:w-1/2">
                 2
