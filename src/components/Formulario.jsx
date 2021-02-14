@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import Error from './Error';
 
 const Formulario = () => {
     const [nombre, setNombre] = useState('');
     const [cantidad, setCantidad] = useState(0);
+    const [error, setError] = useState(false)
 
     // Funcion para guardar el nombre del gasto
     const guardarNombre = (e) => {
@@ -17,10 +19,16 @@ const Formulario = () => {
 
     // Cuando el usuario agrega un gasto
 
-    const agregarGasto = e => {
+    const agregarGasto = (e) => {
         e.preventDefault();
 
         //Validar
+        if (cantidad < 1 || isNaN(cantidad) || nombre.trim() === '') {
+            setError(true);
+            return;
+        }
+
+        setError(false);
 
         //Construir el gasto
 
@@ -32,6 +40,8 @@ const Formulario = () => {
     return (
         <form onSubmit={ agregarGasto }>
             <h2 className="mb-5 text-3xl italic font-bold text-center text-blue-500">Agrega tus datos aquí</h2>
+
+            {error ? <Error mensaje="Ambos campos son obligatorios o presupuesto incorrecto"></Error> : null }
 
             <label htmlFor="gasto" className="font-bold">Nombre gasto:</label>
             <input
