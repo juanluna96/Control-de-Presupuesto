@@ -3,7 +3,7 @@ import React from 'react'
 const Formulario = () => {
     return (
         <form>
-            <h2 className="mb-5 italic font-bold text-center text-blue-500">Agrega tus datos aquí</h2>
+            <h2 className="mb-5 text-3xl italic font-bold text-center text-blue-500">Agrega tus datos aquí</h2>
 
             <label htmlFor="gasto" className="font-bold">Nombre gasto:</label>
             <input
