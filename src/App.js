@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Pregunta from './components/Pregunta'
 import Formulario from './components/Formulario'
 import Listado from './components/Listado'
@@ -9,7 +9,9 @@ function App() {
   const [presupuesto, setPresupuesto] = useState(0);
   const [restante, setRestante] = useState(0);
   const [mostrarpregunta, actualizarPregunta] = useState(true);
-  const [gastos, setGastos] = useState([])
+  const [gastos, setGastos] = useState([]);
+  const [gasto, setGasto] = useState({});
+  const [creargasto, setCrearFasto] = useState(false)
 
   // Cuando agreguemos un nuevo gasto
   const agregarNuevoGasto = (gasto) => {
@@ -18,6 +20,25 @@ function App() {
       gasto
     ])
   }
+
+  // Use effect que actualiza el restante
+  useEffect(() => {
+
+    // Agrega el nuevo presupuesto
+    if (creargasto) {
+      setGastos([
+        ...gastos,
+        gasto
+      ])
+
+      // Resta del presupuesto actual
+      const presupuestoRestante = restante - gasto.cantidad;
+      setRestante(presupuestoRestante);
+
+      // Resetear a false
+      setCrearFasto(false);
+    }
+  }, [gasto])
 
   return (
     <div className="container px-3 mx-auto md:px-0">
@@ -30,7 +51,7 @@ function App() {
             :
             <div className="flex-row p-3 mt-3 md:flex">
               <div className="md:w-1/2">
-                <Formulario agregarNuevoGasto={ agregarNuevoGasto }></Formulario>
+                <Formulario setGasto={ setGasto } setCrearFasto={ setCrearFasto }></Formulario>
               </div>
               <div className="px-3 md:w-1/2">
                 <Listado
