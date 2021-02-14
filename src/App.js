@@ -33,13 +33,12 @@ function App() {
 
       // Resta del presupuesto actual
       const presupuestoRestante = restante - gasto.cantidad;
-      console.log(gasto);
       setRestante(presupuestoRestante);
 
       // Resetear a false
       setCrearGasto(false);
     }
-  }, [gasto])
+  }, [gasto, creargasto, gastos, restante])
 
   return (
     <div className="container px-3 mx-auto md:px-0">
