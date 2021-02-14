@@ -11,7 +11,7 @@ function App() {
   const [mostrarpregunta, actualizarPregunta] = useState(true);
   const [gastos, setGastos] = useState([]);
   const [gasto, setGasto] = useState({});
-  const [creargasto, setCrearFasto] = useState(false)
+  const [creargasto, setCrearGasto] = useState(false)
 
   // Cuando agreguemos un nuevo gasto
   const agregarNuevoGasto = (gasto) => {
@@ -33,10 +33,11 @@ function App() {
 
       // Resta del presupuesto actual
       const presupuestoRestante = restante - gasto.cantidad;
+      console.log(gasto);
       setRestante(presupuestoRestante);
 
       // Resetear a false
-      setCrearFasto(false);
+      setCrearGasto(false);
     }
   }, [gasto])
 
@@ -51,7 +52,7 @@ function App() {
             :
             <div className="flex-row p-3 mt-3 md:flex">
               <div className="md:w-1/2">
-                <Formulario setGasto={ setGasto } setCrearFasto={ setCrearFasto }></Formulario>
+                <Formulario setGasto={ setGasto } setCrearGasto={ setCrearGasto }></Formulario>
               </div>
               <div className="px-3 md:w-1/2">
                 <Listado
