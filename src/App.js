@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Pregunta from './components/Pregunta'
 import Formulario from './components/Formulario'
+import Listado from './components/Listado'
 
 function App() {
   // Definir el state
@@ -21,7 +22,7 @@ function App() {
     <div className="container px-3 mx-auto md:px-0">
       <header>
         <h1 className="my-10 text-5xl text-center text-white">Gasto semanal</h1>
-        <div className="py-5 mx-auto bg-white rounded shadow-md md:max-w-3xl">
+        <div className="py-5 mx-auto mb-3 bg-white rounded shadow-md md:max-w-3xl">
           { mostrarpregunta
             ?
             <Pregunta setPresupuesto={ setPresupuesto } setRestante={ setRestante } actualizarPregunta={ actualizarPregunta }></Pregunta>
@@ -30,8 +31,10 @@ function App() {
               <div className="md:w-1/2">
                 <Formulario agregarNuevoGasto={ agregarNuevoGasto }></Formulario>
               </div>
-              <div className="md:w-1/2">
-                2
+              <div className="px-3 md:w-1/2">
+                <Listado
+                  gastos={ gastos }
+                ></Listado>
               </div>
             </div>
           }
